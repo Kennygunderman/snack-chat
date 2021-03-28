@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:snack_chat/service/auth/auth_service.dart';
 import 'package:snack_chat/ui/auth/signup.dart';
@@ -9,17 +7,12 @@ class LoginPage extends StatelessWidget {
   final String title;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
   LoginPage({Key key, this.title}) : super(key: key);
 
   void _handleLogin(BuildContext context) {
     context
         .read<AuthService>()
         .logIn(email: emailController.text, password: passwordController.text);
-  }
-
-  void _handleGoogleLogin() {
-    //Handle login
   }
 
   void _handleCreateAccount(BuildContext context) {
@@ -71,6 +64,7 @@ class LoginPage extends StatelessWidget {
             ),
             TextField(
               controller: emailController,
+              textInputAction: TextInputAction.next,
               obscureText: false,
               decoration: InputDecoration(
                 labelStyle: TextStyle(color: Colors.grey.shade100),
@@ -98,17 +92,7 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(color: Colors.grey.shade100),
                 ),
               ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _handleGoogleLogin,
-                child: Text(
-                  'Log in with Google'.toUpperCase(),
-                  style: TextStyle(color: Colors.grey.shade100),
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),

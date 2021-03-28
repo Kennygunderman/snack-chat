@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:snack_chat/service/auth/auth_service.dart';
 import 'package:snack_chat/ui/auth/login.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:snack_chat/ui/auth/signup_view_model.dart';
 import 'package:snack_chat/ui/chat/chat.dart';
 
 Future<void> main() async {
@@ -19,10 +20,16 @@ class ChatApp extends StatelessWidget {
     final title = "Chat App";
     final primary = Colors.blue;
 
+    final authService = AuthService(FirebaseAuth.instance);
     return MultiProvider(
+      //App level dependencies
       providers: [
         Provider<AuthService>(
-            create: (_) => AuthService(FirebaseAuth.instance)),
+            create: (_) => authService
+        ),
+        ChangeNotifierProvider<SignUpViewModel>(
+            create: (_) => SignUpViewModel(authService: authService)
+        ),
         StreamProvider(
           create: (context) => context.read<AuthService>().authStateChanges,
           initialData: null,
@@ -49,6 +56,7 @@ class ChatApp extends StatelessWidget {
 
 class AuthWrapper extends StatelessWidget {
   final String title;
+
   AuthWrapper({Key key, this.title}) : super(key: key);
 
   @override
