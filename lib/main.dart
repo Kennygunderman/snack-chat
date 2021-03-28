@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:snack_chat/service/auth/auth_service.dart';
 import 'package:snack_chat/ui/auth/login.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:snack_chat/ui/auth/login_view_model.dart';
 import 'package:snack_chat/ui/auth/signup_view_model.dart';
 import 'package:snack_chat/ui/chat/chat.dart';
 
@@ -21,11 +22,15 @@ class ChatApp extends StatelessWidget {
     final primary = Colors.blue;
 
     final authService = AuthService(FirebaseAuth.instance);
+    authService.signOut();
     return MultiProvider(
       //App level dependencies
       providers: [
         Provider<AuthService>(
             create: (_) => authService
+        ),
+        ChangeNotifierProvider<LoginViewModel>(
+            create: (_) => LoginViewModel(authService: authService)
         ),
         ChangeNotifierProvider<SignUpViewModel>(
             create: (_) => SignUpViewModel(authService: authService)

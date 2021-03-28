@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:snack_chat/service/auth/auth_state.dart';
+import 'package:snack_chat/ui/auth/auth_dialog.dart';
 import 'package:snack_chat/ui/auth/signup_view_model.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -18,38 +19,11 @@ class _SignUpPageState extends State<SignUpPage> {
   void initState() {
     super.initState();
     final vm = Provider.of<SignUpViewModel>(context, listen: false);
-    vm.state = AuthState(AuthStatus.UNAUTHED, null);
+    vm.resetState();
   }
 
   void _pop() {
     Navigator.pop(context);
-  }
-
-  void _showAlertDialog(BuildContext context, String authError) {
-    // set up the button
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("Authentication Error"),
-      content: Text(authError),
-      actions: [
-        okButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
   }
 
   Widget _authScreen(BuildContext context, SignUpViewModel viewModel) {
@@ -65,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     if (viewModel.state.authStatus == AuthStatus.ERROR) {
       Future.delayed(Duration.zero, () async {
-        _showAlertDialog(context, viewModel.state.authError);
+        AuthDialog.show(context, viewModel.state.authError);
       });
     }
 
