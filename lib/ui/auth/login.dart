@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _authScreen(BuildContext context, LoginViewModel viewModel) {
-    if (viewModel.state.authStatus == AuthStatus.ERROR) {
+    if (viewModel.state.authStatus == AuthStatus.error) {
       Future.delayed(Duration.zero, () async {
         AuthDialog.show(context, viewModel.state.authError);
       });

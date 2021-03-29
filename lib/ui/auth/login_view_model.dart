@@ -26,14 +26,14 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void resetState() {
-    _state = AuthState(AuthStatus.UNAUTHED, null);
+    _state = AuthState(AuthStatus.unuathed, null);
   }
 
   void loginUser() async {
     log(_email);
     this._state = await _authService.logIn(email: _email, password: _password);
 
-    if (this._state.authStatus == AuthStatus.AUTHED) {
+    if (this._state.authStatus == AuthStatus.authed) {
       _email = "";
       _password = "";
     }

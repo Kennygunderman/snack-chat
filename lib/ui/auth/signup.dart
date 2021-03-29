@@ -28,16 +28,16 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _authScreen(BuildContext context, SignUpViewModel viewModel) {
     final loadingIndicator = Center(child: CircularProgressIndicator());
-    if (viewModel.state.authStatus == AuthStatus.LOADING) {
+    if (viewModel.state.authStatus == AuthStatus.loading) {
       return loadingIndicator;
     }
 
-    if (viewModel.state.authStatus == AuthStatus.AUTHED) {
+    if (viewModel.state.authStatus == AuthStatus.authed) {
       _pop();
       return loadingIndicator;
     }
 
-    if (viewModel.state.authStatus == AuthStatus.ERROR) {
+    if (viewModel.state.authStatus == AuthStatus.error) {
       Future.delayed(Duration.zero, () async {
         AuthDialog.show(context, viewModel.state.authError);
       });

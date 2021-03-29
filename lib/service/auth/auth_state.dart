@@ -1,8 +1,8 @@
 enum AuthStatus {
-  LOADING,
-  ERROR,
-  AUTHED,
-  UNAUTHED
+  loading,
+  error,
+  authed,
+  unuathed
 }
 
 class AuthState {
