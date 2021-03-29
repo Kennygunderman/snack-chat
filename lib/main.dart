@@ -36,7 +36,7 @@ class ChatApp extends StatelessWidget {
             create: (_) => SignUpViewModel(authService: authService)
         ),
         StreamProvider(
-          create: (context) => context.read<AuthService>().authStateChanges,
+          create: (context) => authService.authStateChanges,
           initialData: null,
         )
       ],

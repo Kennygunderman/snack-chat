@@ -10,9 +10,9 @@ class AuthService {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      return AuthState(AuthStatus.AUTHED, null);
+      return AuthState(AuthStatus.authed, null);
     } on FirebaseAuthException catch (e) {
-      return AuthState(AuthStatus.ERROR, e.message);
+      return AuthState(AuthStatus.error, e.message);
     }
   }
 
@@ -20,9 +20,9 @@ class AuthService {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      return AuthState(AuthStatus.AUTHED, null);
+      return AuthState(AuthStatus.authed, null);
     } on FirebaseAuthException catch (e) {
-      return AuthState(AuthStatus.ERROR, e.message);
+      return AuthState(AuthStatus.error, e.message);
     }
   }
 

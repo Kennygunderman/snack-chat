@@ -18,7 +18,7 @@ class SignUpViewModel extends ChangeNotifier {
   }
 
   void resetState() {
-    _state = AuthState(AuthStatus.UNAUTHED, null);
+    _state = AuthState(AuthStatus.unuathed, null);
   }
 
   String validateEmail(String email) {
@@ -51,23 +51,23 @@ class SignUpViewModel extends ChangeNotifier {
 
   void registerUser() async {
     if (_email.isEmpty) {
-      this._state = AuthState(AuthStatus.ERROR, "Please enter a valid email.");
+      this._state = AuthState(AuthStatus.error, "Please enter a valid email.");
       notifyListeners();
       return;
     }
 
     if (!_passwordsMatch) {
-      this._state = AuthState(AuthStatus.ERROR, "Passwords need to match.");
+      this._state = AuthState(AuthStatus.error, "Passwords need to match.");
       notifyListeners();
       return;
     }
 
-    this._state = AuthState(AuthStatus.LOADING, null);
+    this._state = AuthState(AuthStatus.loading, null);
     notifyListeners();
 
     this._state = await _authService.signUp(email: _email, password: _password);
 
-    if (this._state.authStatus == AuthStatus.AUTHED) {
+    if (this._state.authStatus == AuthStatus.authed) {
       _email = "";
       _password = "";
       _passwordsMatch = false;
