@@ -30,7 +30,6 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void loginUser() async {
-    log(_email);
     this._state = await _authService.logIn(email: _email, password: _password);
 
     if (this._state.authStatus == AuthStatus.authed) {

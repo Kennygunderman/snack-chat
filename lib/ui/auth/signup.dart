@@ -56,6 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           SizedBox(height: 16),
           TextFormField(
+            controller: TextEditingController()..text = viewModel.email,
             obscureText: false,
             onChanged: (value) {
               viewModel.validateEmail(value);
@@ -72,6 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           SizedBox(height: 16),
           TextFormField(
+            controller: TextEditingController()..text = viewModel.password,
             obscureText: true,
             validator: (value) {
               return viewModel.validatePassword(value);
@@ -85,6 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           SizedBox(height: 16),
           TextFormField(
+            controller: TextEditingController()..text = viewModel.confirmedPassword,
             obscureText: true,
             validator: (value) {
               return viewModel.validatePasswordMatch(value);
