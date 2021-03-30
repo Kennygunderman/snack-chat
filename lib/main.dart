@@ -67,11 +67,12 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-
-    if (firebaseUser != null) {
-      return ChatPage();
-    }
-
-    return LoginPage(title: title);
+    //
+    // if (firebaseUser != null) {
+    //   return ChatPage();
+    // }
+    //
+    // return LoginPage(title: title);
+    return ChatPage();
   }
 }
