@@ -1,10 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:snack_chat/data/model/chatroom.dart';
 
 class ChatRoomListItem extends StatelessWidget {
-  final String title;
-  final int numUsers;
-  ChatRoomListItem({Key key, this.title, this.numUsers}) : super(key: key);
+  final ChatRoom chatRoom;
+  final Function(ChatRoom) onTapped;
+  ChatRoomListItem({Key key, this.chatRoom, this.onTapped}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ChatRoomListItem extends StatelessWidget {
           child: InkWell(
             splashColor: Colors.blue.withAlpha(30),
             onTap: () {
-              log("Do something");
+              onTapped(chatRoom);
             },
             child: SizedBox(
               height: 100,
@@ -40,8 +40,8 @@ class ChatRoomListItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(title),
-                        Text(numUsers.toString())
+                        Text(chatRoom.title),
+                        Text('Total Snackers: ' + chatRoom.numUsers.toString())
                       ],
                     ),
                   ]),

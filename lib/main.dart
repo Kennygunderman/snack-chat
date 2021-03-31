@@ -61,7 +61,6 @@ class ChatApp extends StatelessWidget {
 
 class AuthWrapper extends StatelessWidget {
   final String title;
-
   AuthWrapper({Key key, this.title}) : super(key: key);
 
   @override

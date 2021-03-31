@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:snack_chat/data/model/chatroom.dart';
 import 'package:snack_chat/data/repo/chatroom_repo.dart';
+import 'package:snack_chat/ui/chat/chat.dart';
 import 'package:snack_chat/ui/chatroom/chatroom_list_item.dart';
 import 'package:snack_chat/ui/chatroom/chatroom_view_model.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class ChatRoomPage extends StatelessWidget {
+  void _onChatRoomItemTapped(BuildContext context, ChatRoom chatRoom) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ChatPage(title: chatRoom.title)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final viewModel = ChatRoomViewModel(chatRoomRepo: ChatRoomRepo());
@@ -38,8 +46,9 @@ class ChatRoomPage extends StatelessWidget {
                     children: snapshot.data
                         .map(
                           (item) => ChatRoomListItem(
-                            title: item.title,
-                            numUsers: item.numUsers,
+                            chatRoom: item,
+                            onTapped: (chatRoom) =>
+                                _onChatRoomItemTapped(context, chatRoom),
                           ),
                         )
                         .toList(growable: false),
