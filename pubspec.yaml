@@ -25,11 +25,11 @@ dependencies:
     sdk: flutter
 
   #Firebase
-  firebase_core: ^0.7.0
-  firebase_auth: ^0.20.1
+  firebase_core: ^1.0.2
+  firebase_auth: ^1.0.1
   email_validator: 2.0.1
 #  firebase_analytics:  ^7.1.1
-#  cloud_firestore: ^1.0.3
+  cloud_firestore: ^1.0.3
 
   provider: ^5.0.0
   sticky_headers: ^0.1.8
