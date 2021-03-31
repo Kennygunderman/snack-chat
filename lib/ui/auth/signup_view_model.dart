@@ -10,7 +10,7 @@ class SignUpViewModel extends ChangeNotifier {
 
   String _email = "";
   String _password = "";
-  bool _passwordsMatch = false;
+  String _confirmedPassword = "";
   AuthState _state;
 
   AuthState get state {
@@ -21,42 +21,51 @@ class SignUpViewModel extends ChangeNotifier {
     _state = AuthState(AuthStatus.unuathed, null);
   }
 
+  String get email {
+    return _email;
+  }
+
+  String get password {
+    return _password;
+  }
+
+  String get confirmedPassword {
+    return _confirmedPassword;
+  }
+
   String validateEmail(String email) {
+    _email = email;
     if (EmailValidator.validate(email)) {
-      _email = email;
       return null;
     }
 
-    _email = "";
     return "Please enter a valid email.";
   }
 
   String validatePassword(String password) {
+    this._password = password;
     if (password.length > 5) {
-      this._password = password;
       return null;
     }
-
     return "Password must be at least 6 characters long.";
   }
 
   String validatePasswordMatch(String confirmedPassword) {
+    _confirmedPassword = confirmedPassword;
     if (this._password == confirmedPassword) {
-      _passwordsMatch = true;
       return null;
     }
-    _passwordsMatch = false;
     return "Passwords must match.";
   }
 
   void registerUser() async {
-    if (_email.isEmpty) {
+    if (!EmailValidator.validate(email)) {
       this._state = AuthState(AuthStatus.error, "Please enter a valid email.");
       notifyListeners();
       return;
     }
 
-    if (!_passwordsMatch) {
+    if (password != confirmedPassword) {
       this._state = AuthState(AuthStatus.error, "Passwords need to match.");
       notifyListeners();
       return;
@@ -70,7 +79,7 @@ class SignUpViewModel extends ChangeNotifier {
     if (this._state.authStatus == AuthStatus.authed) {
       _email = "";
       _password = "";
-      _passwordsMatch = false;
+      _confirmedPassword = "";
     }
 
     notifyListeners();

@@ -6,7 +6,7 @@ import 'package:snack_chat/ui/auth/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:snack_chat/ui/auth/login_view_model.dart';
 import 'package:snack_chat/ui/auth/signup_view_model.dart';
-import 'package:snack_chat/ui/chat/chat.dart';
+import 'package:snack_chat/ui/chatroom/chatroom.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,17 +61,17 @@ class ChatApp extends StatelessWidget {
 
 class AuthWrapper extends StatelessWidget {
   final String title;
-
   AuthWrapper({Key key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-
-    if (firebaseUser != null) {
-      return ChatPage();
-    }
-
-    return LoginPage(title: title);
+    //
+    // if (firebaseUser != null) {
+    //   return ChatPage();
+    // }
+    //
+    // return LoginPage(title: title);
+    return ChatRoomPage();
   }
 }
