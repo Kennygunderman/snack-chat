@@ -11,7 +11,8 @@ class ChatRoomRepo {
     await for (final snapshot in snapshots) {
       yield snapshot.docs
           .map(
-            (doc) => ChatRoom(title: doc['title'], numUsers: doc['num_users']),
+            (doc) => ChatRoom(
+                id: doc['id'], title: doc['title'], numUsers: doc['num_users']),
           )
           .toList();
     }
