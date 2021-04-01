@@ -7,16 +7,19 @@ import 'package:snack_chat/ui/chatroom/chatroom_view_model.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class ChatRoomPage extends StatelessWidget {
+  final viewModel = ChatRoomViewModel(chatRoomRepo: ChatRoomRepo());
+
   void _onChatRoomItemTapped(BuildContext context, ChatRoom chatRoom) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ChatPage(title: chatRoom.title)),
+      MaterialPageRoute(
+          builder: (context) =>
+              ChatPage(chatRoomId: chatRoom.id, title: chatRoom.title)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = ChatRoomViewModel(chatRoomRepo: ChatRoomRepo());
     return StreamBuilder<List<ChatRoom>>(
       stream: viewModel.chatRooms,
       builder: (context, snapshot) {
