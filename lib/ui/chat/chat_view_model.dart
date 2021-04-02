@@ -1,15 +1,17 @@
 import 'package:snack_chat/data/model/chat.dart';
 import 'package:snack_chat/data/repo/chat_repo.dart';
+import 'package:snack_chat/data/repo/user_repo.dart';
 
 class ChatViewModel {
-  final ChatRepo _chatRepo;
+  final ChatRepo chatRepo;
+  final UserRepo userRepo;
 
-  ChatViewModel({ChatRepo chatRepo}) : _chatRepo = chatRepo;
+  ChatViewModel({this.chatRepo, this.userRepo});
 
   List<ChatMessage> _messages = [];
 
   Stream<List<ChatMessage>> getChatMessages(String chatRoomId) {
-    return _chatRepo
+    return chatRepo
         .getMessageUpdates(chatRoomId)
         .map((update) => _handleUpdatedMessage(update));
   }
@@ -27,14 +29,16 @@ class ChatViewModel {
     return _messages;
   }
 
-  void saveMessage(String chatRoomId, String message) {
-    _chatRepo.saveMessage(
+  void saveMessage(String chatRoomId, String message) async {
+    final user = await userRepo.getUser();
+    chatRepo.saveMessage(
       ChatMessage(
         chatRoomId: chatRoomId,
         date: DateTime.now(),
-        firstName: "Kenny",
+        userEmail: user.email,
+        username: user.username,
         message: message,
-      ),
+      )
     );
   }
 }

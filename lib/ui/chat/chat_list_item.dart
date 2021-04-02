@@ -23,7 +23,7 @@ class ChatListItem extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(8))),
             child: Padding(
               padding: EdgeInsets.all(16),
-              child: Text('KG'),
+              child: Text(chatMessage.chatAbbreviation),
             ),
           ),
           SizedBox(width: 8),
@@ -36,7 +36,7 @@ class ChatListItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'kennygunderman',
+                      chatMessage.username,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     SizedBox(width: 8),
