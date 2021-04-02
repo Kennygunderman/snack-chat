@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:snack_chat/data/model/chatroom.dart';
 import 'package:snack_chat/data/repo/chatroom_repo.dart';
+import 'package:snack_chat/service/auth/auth_service.dart';
 import 'package:snack_chat/ui/chat/chat.dart';
 import 'package:snack_chat/ui/chatroom/chatroom_list_item.dart';
 import 'package:snack_chat/ui/chatroom/chatroom_view_model.dart';
 import 'package:sticky_headers/sticky_headers.dart';
+import 'package:provider/provider.dart';
 
 class ChatRoomPage extends StatelessWidget {
   final viewModel = ChatRoomViewModel(chatRoomRepo: ChatRoomRepo());
@@ -27,6 +29,11 @@ class ChatRoomPage extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text('Snack Chat'),
+              actions: <Widget>[
+                IconButton(icon: Icon(Icons.logout), onPressed: () {
+                  context.read<AuthService>().signOut();
+                })
+              ],
             ),
             body: ListView.builder(
               itemCount: 1,
