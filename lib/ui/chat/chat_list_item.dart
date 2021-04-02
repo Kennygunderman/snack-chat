@@ -32,7 +32,7 @@ class ChatListItem extends StatelessWidget {
                 border: Border.all(
                   color: Colors.blue[500],
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8))),
+                borderRadius: BorderRadius.all(Radius.circular(32))),
             child: Padding(
               padding: EdgeInsets.all(16),
               child: Text(chatMessage.chatAbbreviation),
