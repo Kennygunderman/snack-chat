@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:snack_chat/data/model/chat.dart';
 import 'package:snack_chat/data/model/chatroom.dart';
 import 'package:snack_chat/data/repo/chat_repo.dart';
+import 'package:snack_chat/data/repo/chatroom_repo.dart';
 import 'package:snack_chat/data/repo/user_repo.dart';
 import 'package:snack_chat/ui/chat/chat_list_item.dart';
 import 'package:snack_chat/ui/chat/chat_view_model.dart';
-import 'package:snack_chat/ui/chat/icon/chat_icons.dart';
-import 'package:snack_chat/util/icon_helper.dart';
 
 class ChatPage extends StatelessWidget {
   final String title;
   final ChatRoom chatRoom;
 
   ChatPage({Key key, this.title, this.chatRoom}) : super(key: key);
-  final viewModel = ChatViewModel(ChatRepo(), UserRepo(), IconHelper());
+  final viewModel = ChatViewModel(ChatRepo(), UserRepo(), ChatRoomRepo());
 
   @override
   Widget build(BuildContext context) {

@@ -9,15 +9,21 @@ class IconInfo {
 }
 
 class IconHelper {
-  final List<String> _iconMessages = [
+  IconHelper._();
+  static const List<String> _iconMessages = [
     ':chip:',
     ':banana:',
     ':ice_cream:',
     ':cheeto:',
-    ':cookie:'
+    ':cookie:',
+    ':toast:'
   ];
 
-  IconInfo getIconFromIconName(String iconName) {
+  static IconInfo getIconFromMessage(String message) {
+    return getIconFromIconName(message.replaceAll(':', ''));
+  }
+
+  static IconInfo getIconFromIconName(String iconName) {
     switch (iconName) {
       case 'chip':
         return IconInfo(iconData: ChatIcons.chip, color: Colors.red);
@@ -25,15 +31,17 @@ class IconHelper {
         return IconInfo(iconData: ChatIcons.banana, color: Colors.yellow);
       case 'ice_cream':
         return IconInfo(iconData: ChatIcons.ice_cream_cone, color: Colors.orange);
+      case 'toast':
+        return IconInfo(iconData: ChatIcons.toast, color: Colors.brown);
       case 'cheeto':
         return IconInfo(iconData: ChatIcons.cheeto, color: Colors.deepOrange);
       case 'cookie':
-        return IconInfo(iconData: ChatIcons.cookies, color: Colors.brown);
+        return IconInfo(iconData: ChatIcons.cookies, color: Colors.green);
     }
     return null;
   }
 
-  String getMessageFromIconName(String iconName) {
+  static String getMessageFromIconName(String iconName) {
     switch (iconName) {
       case 'chip':
         return _iconMessages[0];
@@ -45,27 +53,13 @@ class IconHelper {
         return _iconMessages[3];
       case 'cookie':
         return _iconMessages[4];
+      case 'toast':
+        return _iconMessages[5];
     }
     return null;
   }
 
-  IconInfo getIconFromMessage(String message) {
-    switch (message) {
-      case ':chip:':
-        return IconInfo(iconData: ChatIcons.chip, color: Colors.red);
-      case ':banana:':
-        return IconInfo(iconData: ChatIcons.banana, color: Colors.yellow);
-      case ':ice_cream:':
-        return IconInfo(iconData: ChatIcons.ice_cream_cone, color: Colors.orange);
-      case ':cheeto:':
-        return IconInfo(iconData: ChatIcons.cheeto, color: Colors.deepOrange);
-      case ':cookie:':
-        return IconInfo(iconData: ChatIcons.cookies, color: Colors.brown);
-    }
-    return null;
-  }
-
-  bool isIcon(String message) {
+  static bool isIcon(String message) {
     return _iconMessages.contains(message);
   }
 }
