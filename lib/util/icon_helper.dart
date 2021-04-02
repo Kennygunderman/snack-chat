@@ -15,8 +15,13 @@ class IconHelper {
     ':banana:',
     ':ice_cream:',
     ':cheeto:',
-    ':cookie:'
+    ':cookie:',
+    ':toast:'
   ];
+
+  static IconInfo getIconFromMessage(String message) {
+    return getIconFromIconName(message.replaceAll(':', ''));
+  }
 
   static IconInfo getIconFromIconName(String iconName) {
     switch (iconName) {
@@ -26,10 +31,12 @@ class IconHelper {
         return IconInfo(iconData: ChatIcons.banana, color: Colors.yellow);
       case 'ice_cream':
         return IconInfo(iconData: ChatIcons.ice_cream_cone, color: Colors.orange);
+      case 'toast':
+        return IconInfo(iconData: ChatIcons.toast, color: Colors.brown);
       case 'cheeto':
         return IconInfo(iconData: ChatIcons.cheeto, color: Colors.deepOrange);
       case 'cookie':
-        return IconInfo(iconData: ChatIcons.cookies, color: Colors.brown);
+        return IconInfo(iconData: ChatIcons.cookies, color: Colors.green);
     }
     return null;
   }
@@ -46,22 +53,8 @@ class IconHelper {
         return _iconMessages[3];
       case 'cookie':
         return _iconMessages[4];
-    }
-    return null;
-  }
-
-  static IconInfo getIconFromMessage(String message) {
-    switch (message) {
-      case ':chip:':
-        return IconInfo(iconData: ChatIcons.chip, color: Colors.red);
-      case ':banana:':
-        return IconInfo(iconData: ChatIcons.banana, color: Colors.yellow);
-      case ':ice_cream:':
-        return IconInfo(iconData: ChatIcons.ice_cream_cone, color: Colors.orange);
-      case ':cheeto:':
-        return IconInfo(iconData: ChatIcons.cheeto, color: Colors.deepOrange);
-      case ':cookie:':
-        return IconInfo(iconData: ChatIcons.cookies, color: Colors.brown);
+      case 'toast':
+        return _iconMessages[5];
     }
     return null;
   }
