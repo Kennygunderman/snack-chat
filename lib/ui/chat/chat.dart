@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snack_chat/data/model/chat.dart';
 import 'package:snack_chat/data/repo/chat_repo.dart';
+import 'package:snack_chat/data/repo/user_repo.dart';
 import 'package:snack_chat/ui/chat/chat_list_item.dart';
 import 'package:snack_chat/ui/chat/chat_view_model.dart';
 
@@ -10,7 +11,7 @@ class ChatPage extends StatelessWidget {
   final String chatRoomId;
 
   ChatPage({Key key, this.title, this.chatRoomId}) : super(key: key);
-  final viewModel = ChatViewModel(chatRepo: ChatRepo());
+  final viewModel = ChatViewModel(chatRepo: ChatRepo(), userRepo: UserRepo());
 
   @override
   Widget build(BuildContext context) {
