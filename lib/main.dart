@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:snack_chat/data/repo/user_repo.dart';
 import 'package:snack_chat/service/auth/auth_service.dart';
 import 'package:snack_chat/ui/auth/login.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,8 +22,8 @@ class ChatApp extends StatelessWidget {
     final title = "Chat App";
     final primary = Colors.blue;
 
-    final authService = AuthService(FirebaseAuth.instance);
-    authService.signOut();
+    final authService = AuthService(FirebaseAuth.instance, UserRepo());
+    // authService.signOut();
     return MultiProvider(
       //App level dependencies
       providers: [
@@ -66,12 +67,11 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-    //
-    // if (firebaseUser != null) {
-    //   return ChatPage();
-    // }
-    //
-    // return LoginPage(title: title);
-    return ChatRoomPage();
+
+    if (firebaseUser != null) {
+      return ChatRoomPage();
+    }
+
+    return LoginPage(title: title);
   }
 }
