@@ -12,7 +12,11 @@ class ChatRoomRepo {
       yield snapshot.docs
           .map(
             (doc) => ChatRoom(
-                id: doc['id'], title: doc['title'], numUsers: doc['num_users']),
+              id: doc['id'],
+              icon: doc['icon'],
+              title: doc['title'],
+              numUsers: doc['num_users'],
+            ),
           )
           .toList();
     }

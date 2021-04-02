@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snack_chat/data/model/chatroom.dart';
+import 'package:snack_chat/util/icon_helper.dart';
 
 class ChatRoomListItem extends StatelessWidget {
   final ChatRoom chatRoom;
@@ -8,6 +9,7 @@ class ChatRoomListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconInfo = IconHelper().getIconFromIconName(chatRoom.icon);
     return Container(
       child: Padding(
         padding: EdgeInsets.only(top: 8, right: 8, left: 8),
@@ -25,14 +27,14 @@ class ChatRoomListItem extends StatelessWidget {
                   Row(children: [
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.blue[500],
+                          color: iconInfo.color,
                           border: Border.all(
-                            color: Colors.blue[500],
+                            color: iconInfo.color,
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(4))),
                       child: Padding(
                         padding: EdgeInsets.all(8),
-                        child: Icon(Icons.all_inclusive_rounded),
+                        child: Icon(iconInfo.iconData),
                       ),
                     ),
                     SizedBox(width: 8),

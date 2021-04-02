@@ -1,17 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snack_chat/data/model/chat.dart';
+import 'package:snack_chat/data/model/chatroom.dart';
 import 'package:snack_chat/data/repo/chat_repo.dart';
 import 'package:snack_chat/data/repo/user_repo.dart';
 import 'package:snack_chat/ui/chat/chat_list_item.dart';
 import 'package:snack_chat/ui/chat/chat_view_model.dart';
+import 'package:snack_chat/ui/chat/icon/chat_icons.dart';
+import 'package:snack_chat/util/icon_helper.dart';
 
 class ChatPage extends StatelessWidget {
   final String title;
-  final String chatRoomId;
+  final ChatRoom chatRoom;
 
-  ChatPage({Key key, this.title, this.chatRoomId}) : super(key: key);
-  final viewModel = ChatViewModel(chatRepo: ChatRepo(), userRepo: UserRepo());
+  ChatPage({Key key, this.title, this.chatRoom}) : super(key: key);
+  final viewModel = ChatViewModel(ChatRepo(), UserRepo(), IconHelper());
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           StreamBuilder<List<ChatMessage>>(
-            stream: viewModel.getChatMessages(chatRoomId),
+            stream: viewModel.getChatMessages(chatRoom.id),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Expanded(
@@ -80,9 +83,15 @@ class ChatPage extends StatelessWidget {
         ),
         SizedBox(width: 12),
         IconButton(
+          icon: Icon(viewModel.getIconInfo(chatRoom.icon).iconData),
+          onPressed: () {
+            viewModel.saveIconMessage(chatRoom.id, chatRoom.icon);
+          },
+        ),
+        IconButton(
           icon: Icon(Icons.send_rounded),
           onPressed: () {
-            viewModel.saveMessage(chatRoomId, controller.value.text);
+            viewModel.saveMessage(chatRoom.id, controller.value.text);
             controller.text = "";
           },
         ),

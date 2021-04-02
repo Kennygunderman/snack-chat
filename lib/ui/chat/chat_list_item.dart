@@ -1,11 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snack_chat/data/model/chat.dart';
+import 'package:snack_chat/util/icon_helper.dart';
 
 class ChatListItem extends StatelessWidget {
-
   final ChatMessage chatMessage;
+  final IconHelper _iconHelper = IconHelper();
+
   ChatListItem({Key key, this.chatMessage}) : super(key: key);
+
+  //Icon or message
+  Widget _getMessage(String message) {
+    if (_iconHelper.isIcon(message)) {
+      final iconInfo = _iconHelper.getIconFromMessage(message);
+      return Icon(iconInfo.iconData, size: 150, color: iconInfo.color);
+    }
+
+    return Text(chatMessage.message);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +56,7 @@ class ChatListItem extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 4),
-                Text(chatMessage.message),
+                _getMessage(chatMessage.message)
               ],
             ),
           ),
