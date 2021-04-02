@@ -1,17 +1,19 @@
 import 'package:snack_chat/data/model/chat.dart';
 import 'package:snack_chat/data/repo/chat_repo.dart';
 import 'package:snack_chat/data/repo/user_repo.dart';
+import 'package:snack_chat/util/icon_helper.dart';
 
 class ChatViewModel {
-  final ChatRepo chatRepo;
-  final UserRepo userRepo;
+  final ChatRepo _chatRepo;
+  final UserRepo _userRepo;
+  final IconHelper _iconHelper;
 
-  ChatViewModel({this.chatRepo, this.userRepo});
+  ChatViewModel(this._chatRepo, this._userRepo, this._iconHelper);
 
   List<ChatMessage> _messages = [];
 
   Stream<List<ChatMessage>> getChatMessages(String chatRoomId) {
-    return chatRepo
+    return _chatRepo
         .getMessageUpdates(chatRoomId)
         .map((update) => _handleUpdatedMessage(update));
   }
@@ -30,15 +32,22 @@ class ChatViewModel {
   }
 
   void saveMessage(String chatRoomId, String message) async {
-    final user = await userRepo.getUser();
-    chatRepo.saveMessage(
-      ChatMessage(
-        chatRoomId: chatRoomId,
-        date: DateTime.now(),
-        userEmail: user.email,
-        username: user.username,
-        message: message,
-      )
-    );
+    final user = await _userRepo.getUser();
+    _chatRepo.saveMessage(ChatMessage(
+      chatRoomId: chatRoomId,
+      date: DateTime.now(),
+      userEmail: user.email,
+      username: user.username,
+      message: message,
+    ));
+  }
+
+  void saveIconMessage(String chatRoomId, String iconName) async {
+    final message = _iconHelper.getMessageFromIconName(iconName);
+    saveMessage(chatRoomId, message);
+  }
+
+  IconInfo getIconInfo(String iconName) {
+    return _iconHelper.getIconFromIconName(iconName);
   }
 }

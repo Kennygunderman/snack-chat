@@ -16,7 +16,7 @@ class ChatRoomPage extends StatelessWidget {
       context,
       MaterialPageRoute(
           builder: (context) =>
-              ChatPage(chatRoomId: chatRoom.id, title: chatRoom.title)),
+              ChatPage(chatRoom: chatRoom, title: chatRoom.title)),
     );
   }
 
