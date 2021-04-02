@@ -17,6 +17,10 @@ class UserRepo {
 
     final doc = snapshot.docs[0]; //bad idea?
     return Model.User(
-        id: doc.id, email: doc['email'], username: doc['username']);
+      id: doc.id,
+      email: doc['email'],
+      username: doc['username'],
+      chatIconColor: doc['chat_icon_color'],
+    );
   }
 }

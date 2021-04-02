@@ -5,14 +5,13 @@ import 'package:snack_chat/util/icon_helper.dart';
 
 class ChatListItem extends StatelessWidget {
   final ChatMessage chatMessage;
-  final IconHelper _iconHelper = IconHelper();
 
   ChatListItem({Key key, this.chatMessage}) : super(key: key);
 
   //Icon or message
   Widget _getMessage(String message) {
-    if (_iconHelper.isIcon(message)) {
-      final iconInfo = _iconHelper.getIconFromMessage(message);
+    if (IconHelper.isIcon(message)) {
+      final iconInfo = IconHelper.getIconFromMessage(message);
       return Icon(iconInfo.iconData, size: 150, color: iconInfo.color);
     }
 
@@ -28,9 +27,9 @@ class ChatListItem extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: Colors.blue[500],
+                color: chatMessage.getChatIconColor(),
                 border: Border.all(
-                  color: Colors.blue[500],
+                  color: chatMessage.getChatIconColor(),
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(32))),
             child: Padding(

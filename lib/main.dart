@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:snack_chat/data/repo/user_repo.dart';
 import 'package:snack_chat/service/auth/auth_service.dart';
+import 'package:snack_chat/service/user/user_creation_service.dart';
 import 'package:snack_chat/ui/auth/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:snack_chat/ui/auth/login_view_model.dart';
@@ -22,20 +23,17 @@ class ChatApp extends StatelessWidget {
     final title = "Chat App";
     final primary = Colors.blue;
 
-    final authService = AuthService(FirebaseAuth.instance, UserRepo());
+    final authService =
+        AuthService(FirebaseAuth.instance, UserCreationService(UserRepo()));
     // authService.signOut();
     return MultiProvider(
       //App level dependencies
       providers: [
-        Provider<AuthService>(
-            create: (_) => authService
-        ),
+        Provider<AuthService>(create: (_) => authService),
         ChangeNotifierProvider<LoginViewModel>(
-            create: (_) => LoginViewModel(authService: authService)
-        ),
+            create: (_) => LoginViewModel(authService: authService)),
         ChangeNotifierProvider<SignUpViewModel>(
-            create: (_) => SignUpViewModel(authService: authService)
-        ),
+            create: (_) => SignUpViewModel(authService: authService)),
         StreamProvider(
           create: (context) => authService.authStateChanges,
           initialData: null,
@@ -62,6 +60,7 @@ class ChatApp extends StatelessWidget {
 
 class AuthWrapper extends StatelessWidget {
   final String title;
+
   AuthWrapper({Key key, this.title}) : super(key: key);
 
   @override

@@ -118,9 +118,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final viewModel = Provider.of<SignUpViewModel>(context);
-    // log(viewModel.test());
-
     return Scaffold(
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
@@ -130,7 +127,6 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         body: Consumer<SignUpViewModel>(
             builder: (context, viewModel, child) =>
-                // _showAlertDialog(context);
                 _authScreen(context, viewModel)));
   }
 }

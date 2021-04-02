@@ -9,7 +9,7 @@ class ChatRoomListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final iconInfo = IconHelper().getIconFromIconName(chatRoom.icon);
+    final iconInfo = IconHelper.getIconFromIconName(chatRoom.icon);
     return Container(
       child: Padding(
         padding: EdgeInsets.only(top: 8, right: 8, left: 8),
@@ -43,7 +43,7 @@ class ChatRoomListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(chatRoom.title),
-                        Text('Total Snackers: ' + chatRoom.numUsers.toString())
+                        Text('Total Snacks sent: ' + chatRoom.numUsers.toString())
                       ],
                     ),
                   ]),

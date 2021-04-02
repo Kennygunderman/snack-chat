@@ -9,7 +9,8 @@ class IconInfo {
 }
 
 class IconHelper {
-  final List<String> _iconMessages = [
+  IconHelper._();
+  static const List<String> _iconMessages = [
     ':chip:',
     ':banana:',
     ':ice_cream:',
@@ -17,7 +18,7 @@ class IconHelper {
     ':cookie:'
   ];
 
-  IconInfo getIconFromIconName(String iconName) {
+  static IconInfo getIconFromIconName(String iconName) {
     switch (iconName) {
       case 'chip':
         return IconInfo(iconData: ChatIcons.chip, color: Colors.red);
@@ -33,7 +34,7 @@ class IconHelper {
     return null;
   }
 
-  String getMessageFromIconName(String iconName) {
+  static String getMessageFromIconName(String iconName) {
     switch (iconName) {
       case 'chip':
         return _iconMessages[0];
@@ -49,7 +50,7 @@ class IconHelper {
     return null;
   }
 
-  IconInfo getIconFromMessage(String message) {
+  static IconInfo getIconFromMessage(String message) {
     switch (message) {
       case ':chip:':
         return IconInfo(iconData: ChatIcons.chip, color: Colors.red);
@@ -65,7 +66,7 @@ class IconHelper {
     return null;
   }
 
-  bool isIcon(String message) {
+  static bool isIcon(String message) {
     return _iconMessages.contains(message);
   }
 }
