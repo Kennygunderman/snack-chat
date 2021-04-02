@@ -43,7 +43,7 @@ class ChatRoomListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(chatRoom.title),
-                        Text('Total Snacks sent: ' + chatRoom.numUsers.toString())
+                        Text('Total Snacks sent: ' + chatRoom.snacksSent.toString())
                       ],
                     ),
                   ]),
