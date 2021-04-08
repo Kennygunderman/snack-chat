@@ -10,6 +10,8 @@ import 'package:snack_chat/ui/auth/login_view_model.dart';
 import 'package:snack_chat/ui/auth/signup_view_model.dart';
 import 'package:snack_chat/ui/chatroom/chatroom.dart';
 
+// Great App Kenny
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
