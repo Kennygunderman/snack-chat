@@ -25,7 +25,7 @@ Firebase Schema:
 - message (string)
 - send_date (timestamp)
 - user_email (string)
-- username (jeff)
+- username (string)
 ```
 
 `user`
