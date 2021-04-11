@@ -6,9 +6,11 @@ class ChatRoomRepo {
       FirebaseFirestore.instance.collection('chat_rooms');
 
   void incrementSnacksSent(String chatRoomId) async {
-    final doc = await _ref.doc(chatRoomId).get();
-    final int currentSent = doc['snacks_sent'];
-    _ref.doc(chatRoomId).update({'snacks_sent': currentSent + 1});
+    //final doc = await _ref.doc(chatRoomId).get();
+    //final int currentSent = doc['snacks_sent'];
+    //_ref.doc(chatRoomId).update({'snacks_sent': currentSent + 1});
+    
+    _ref.doc(chatRoomId).update({'snacks_sent': FieldValue.increment(1});
   }
 
   Stream<List<ChatRoom>> getChatRooms() async* {
