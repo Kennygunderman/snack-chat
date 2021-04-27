@@ -5,7 +5,7 @@
 ![screeenies](https://user-images.githubusercontent.com/16354865/114061608-9fcb8980-9864-11eb-8ace-7f0c4cc2d1c8.png)
 
 
-A Chatroom application designed to talking about your favorite snacks with others
+A Chatroom application designed to chat about your favorite snacks with others
 
 Firebase Schema:
 
