@@ -30,7 +30,7 @@ Firebase Schema:
 
 `user`
 ```
-- usernam (string)
+- username (string)
 - chat_icon_color (string)
 - username (string)
 ```
