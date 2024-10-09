@@ -1,4 +1,4 @@
-# snack_chat
+# Snack Chat
 
 ### A chatting app focused on real-time data sync using firebase | Built in Flutter
 
