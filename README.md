@@ -1,6 +1,6 @@
 # Snack Chat
 
-### A chatting app focused on real-time data sync using firebase | Built in Flutter
+### A chatting app focused on real-time data sync using firebase (For a YT Video) | Built in Flutter
 
 I made a YouTube video about learning Flutter in 7 days, and it ended up getting over 500k views. This chatroom app is the project that came out of that video: https://youtu.be/RGdg-TCmldY?si=-hzdr3S9LxSsIqBh
 
